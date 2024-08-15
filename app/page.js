@@ -76,7 +76,7 @@ export default function Home() {
       </Box>
 
       {/* Features */}
-      <Box sx={{ my: 6, px: 2}}>
+      <Box sx={{ my: 6, px: 2, maxWidth: '1200px', mx: 'auto'}}>
         <Typography variant="h4" component="h2" gutterBottom textAlign="center">
           Features
         </Typography>
@@ -137,7 +137,7 @@ export default function Home() {
       </Box>
 
       {/* Pricing */}
-      <Box sx={{ my: 6, textAlign: "center", px: 2}}>
+      <Box sx={{ my: 6, textAlign: "center", px: 2, maxWidth: '1200px', mx: 'auto'}}>
         <Typography variant="h4" component="h2" gutterBottom>
           Pricing
         </Typography>
