@@ -4,8 +4,6 @@ import Head from "next/head";
 import { AppBar, Toolbar, Typography, Button, Box, Grid } from "@mui/material";
 
 export default function Home() {
-
-  
   // Stripe Integration
   const handleSubmit = async () => {
     const checkoutSession = await fetch("/api/checkout_sessions", {
@@ -75,81 +73,118 @@ export default function Home() {
         <Button variant="outlined" color="primary" sx={{ mt: 2 }}>
           Learn More
         </Button>
-      </Box> 
-      
+      </Box>
+
       {/* Features */}
-      <Box sx={{ my: 6 }}> 
-        <Typography variant="h4" component="h2" gutterBottom>
+      <Box sx={{ my: 6, px: 2}}>
+        <Typography variant="h4" component="h2" gutterBottom textAlign="center">
           Features
         </Typography>
         <Grid container spacing={4} justifyContent="center">
-          <Grid item xs={12} md={4}>
-            <Box sx={{
-              p: 3,
-              border: '1px solid',
-              borderColor: 'grey.300',
-              borderRadius: 2,
-            }}
+          <Grid item xs={10} md={4}>
+            <Box
+              sx={{
+                p: 3,
+                border: "1px solid",
+                borderColor: "grey.300",
+                borderRadius: 2,
+              }}
             >
-              <Typography variant="h6">Easy Text Input</Typography>
+              <Typography variant="h6" gutterBottom>Easy Text Input</Typography>
               <Typography>
-                {' '}
-                Simply input your text and let oursoftware do the rest. Creating flashcards has never been easier.
+                {" "}
+                Simply input your text and let our software do the rest. Creating flashcards has never been easier.
               </Typography>
-
-              <Typography variant="h6">Smart Flashcards</Typography>
-              <Typography>
-                {' '}
-                Our AI intelligently breaks down your text into concise flashcards, perfect for studying.
-              </Typography>
-
-              <Typography variant="h6">Accessible Anywhere</Typography>
-              <Typography>
-                {' '}
-                Access your flashcards from any device, at anytime. Study on the go with ease.
-              </Typography>
-              </Box>
+            </Box>
           </Grid>
-        </Grid>
-      </Box>
 
-      {/* Pricing */}
-      <Box sx={{ my: 6, textAlign: "center" }}>
-        <Typography variant="h4" component="h2" gutterBottom>
-          Pricing
-        </Typography>
-        <Grid container spacing={4} justifyContent="center">
-          <Grid item xs={12} md={4}>
-            <Box sx={{
-              p: 3,
-              border: '1px solid',
-              borderColor: 'grey.300',
-              borderRadius: 2,
-            }}
+          <Grid item xs={10} md={4}>
+            <Box
+              sx={{
+                p: 3,
+                border: "1px solid",
+                borderColor: "grey.300",
+                borderRadius: 2,
+              }}
             >
-              <Typography variant="h6">Easy Text Input</Typography>
+              <Typography variant="h6" gutterBottom>Smart Flashcards</Typography>
               <Typography>
-                {' '}
-                Simply input your text and let oursoftware do the rest. Creating flashcards has never been easier.
+                {" "}
+                Our AI intelligently breaks down your text into concise
+                flashcards, perfect for studying.
               </Typography>
+            </Box>
+          </Grid>
 
-              <Typography variant="h6">Smart Flashcards</Typography>
+          <Grid item xs={10} md={4}>
+            <Box
+              sx={{
+                p: 3,
+                border: "1px solid",
+                borderColor: "grey.300",
+                borderRadius: 2,
+              }}
+            >
+              <Typography variant="h6" gutterBottom>Accessible Anywhere</Typography>
               <Typography>
-                {' '}
-                Our AI intelligently breaks down your text into concise flashcards, perfect for studying.
-              </Typography>
-
-              <Typography variant="h6">Accessible Anywhere</Typography>
-              <Typography>
-                {' '}
-                Access your flashcards from any device, at anytime. Study on the go with ease.
+                {" "}
+                Access your flashcards from any device, at anytime. Study on the
+                go with ease.
               </Typography>
             </Box>
           </Grid>
         </Grid>
       </Box>
-     
+
+      {/* Pricing */}
+      <Box sx={{ my: 6, textAlign: "center", px: 2}}>
+        <Typography variant="h4" component="h2" gutterBottom>
+          Pricing
+        </Typography>
+        <Grid container spacing={4} justifyContent="center">
+          <Grid item xs={10} md={6}>
+            <Box
+              sx={{
+                p: 3,
+                border: "1px solid",
+                borderColor: "grey.300",
+                borderRadius: 2,
+              }}
+            >
+              <Typography variant="h6" gutterBottom>Basic</Typography>
+              <Typography variant="h5" gutterBottom>$5 / month</Typography>
+              <Typography>
+                {" "}
+                Access to basic flashcard features and limited storage.
+              </Typography>
+              <Button variant="contained" color="primary" sx={{mt: 2}}>
+                Choose Basic
+              </Button>
+            </Box>
+          </Grid>
+
+          <Grid item xs={10} md={6}>
+            <Box
+              sx={{
+                p: 3,
+                border: "1px solid",
+                borderColor: "grey.300",
+                borderRadius: 2,
+              }}
+            >
+              <Typography variant="h6" gutterBottom>Basic</Typography>
+              <Typography variant="h5" gutterBottom>$10 / month</Typography>
+              <Typography>
+                {" "}
+                Augmented flashcards and storage, with priority support.
+              </Typography>
+              <Button variant="contained" color="primary" sx={{mt: 2}}>
+                Choose Pro
+              </Button>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
     </>
-    
   );
 }
