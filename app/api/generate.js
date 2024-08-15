@@ -14,6 +14,7 @@ You should return in the following JSON format:
   ]
 }
 `;
+
 export async function POST(req) {
   const openai = new OpenAI({ 
     apiKey: process.env.OPENAI_API_KEY,
