@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { container, TextField, Box, Button, Typography } from "@mui/material";
+import { Container, TextField, Box, Button, Typography, Dialog, handleCloseDialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from "@mui/material";
 
 export default function generate() {
   const [text, setText] = useState("");
