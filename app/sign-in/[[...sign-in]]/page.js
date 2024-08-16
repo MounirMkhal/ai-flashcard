@@ -12,24 +12,6 @@ import { SignIn } from "@clerk/nextjs";
 export default function SignUpPage() {
   return (
     <Container maxWidth="sm">
-      <AppBar>
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            FlashCard SaaS
-          </Typography>
-          <Button color="inherit">
-            <Link href="/sing-in" passHref>
-              Login
-            </Link>
-          </Button>
-          <Button color="inherit">
-            <Link href="/sign-up" passHref>
-              Sign Up
-            </Link>
-          </Button>
-        </Toolbar>
-      </AppBar>
-
       <Box
         display="flex"
         flexDirection="column"

@@ -1,3 +1,8 @@
+import { Container, Grid, Card, CardActionArea, CardContent, Box, Typography } from "@mui/material";
+import { useUser } from "@clerk/nextjs";
+import { collection, doc, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+
 export default function Flashcard() {
   const { isLoaded, isSignedIn, user } = useUser();
   const [flashcards, setFlashcards] = useState([]);

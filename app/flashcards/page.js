@@ -1,6 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useUser } from "@clerk/nextjs";
+import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
+import { useRouter } from "next/router";
+import { Container, Grid, Card, CardActionArea, CardContent, Typography } from "@mui/material";
 
-export default function flashcards() {
+export default function Flashcards() {
   const { isLoaded, isSignedIn, user } = useUser();
   const [flashcards, setFlashcards] = useState([]);
   const router = useRouter();
@@ -25,22 +30,22 @@ export default function flashcards() {
 
   return (
     <Container maxWidth="md">
-    <Grid container spacing={3} sx={{ mt: 4 }}>
-      {flashcards.map((flashcard, index) => (
-        <Grid item xs={12} sm={6} md={4} key={index}>
-          <Card>
-            <CardActionArea onClick={() => handleCardClick(flashcard.name)}>
-              <CardContent>
-                <Typography variant="h5" component="div">
-                  {flashcard.name}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Grid>
-      ))}
-    </Grid>
-  </Container>
+      <Grid container spacing={3} sx={{ mt: 4 }}>
+        {flashcards.map((flashcard, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <Card>
+              <CardActionArea onClick={() => handleCardClick(flashcard.name)}>
+                <CardContent>
+                  <Typography variant="h5" component="div">
+                    {flashcard.name}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   )
 
   function handleCardClick(id) {
