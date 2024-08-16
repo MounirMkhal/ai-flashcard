@@ -13,13 +13,11 @@ import {
   Box,
   AppBar,
   Toolbar,
-  Button,  
+  Button,
 } from "@mui/material";
 import { doc, getDocs, collection } from "firebase/firestore";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-
-
 
 export default function Flashcard() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -53,51 +51,68 @@ export default function Flashcard() {
 
   return (
     <Container maxWidth="md">
-      <AppBar position="static">
-          <Toolbar sx ={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Box sx = {{ display: 'flex', gap: 2}}>
-            <Button color="inherit" component={Link} href="/">
-              FlashCard SaaS
-            </Button>
-            </Box>
-            <SignedOut>
-              <Button color="inherit" href="/sign-in">
-                Login
-              </Button>
-              <Button color="inherit" href="/sign-up">
-                Sign Up
-              </Button>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </Toolbar>
-        </AppBar>
       <Grid container spacing={3} sx={{ mt: 4 }}>
-        {flashcards.map((flashcard) => (
-          <Grid item xs={12} sm={6} md={4} key={flashcard.id}>
+        {flashcards.map((flashcard, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
             <Card>
-              <CardActionArea onClick={() => handleCardClick(flashcard.id)}>
+              <CardActionArea onClick={() => handleCardClick(index)}>
                 <CardContent>
                   <Box
-                    sx={
-                      {
-                        /* Styling for flip animation */
-                      }
-                    }
+                    sx={{
+                      perspective: "1000px",
+                      position: "relative",
+                      width: "100%",
+                      height: "200px",
+                    }}
                   >
-                    <div>
-                      <div>
-                        <Typography variant="h5" component="div">
-                          {flashcard.front}
-                        </Typography>
-                      </div>
-                      <div>
-                        <Typography variant="h5" component="div">
-                          {flashcard.back}
-                        </Typography>
-                      </div>
-                    </div>
+                    <Box
+                      sx={{
+                        transition: "transform 0.6s",
+                        transformStyle: "preserve-3d",
+                        position: "relative",
+                        width: "100%",
+                        height: "100%",
+                        transform: flipped[index]
+                          ? "rotateY(180deg)"
+                          : "rotateY(0deg)",
+                      }}
+                    >
+                      {/* Front Side */}
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          width: "100%",
+                          height: "100%",
+                          backfaceVisibility: "hidden",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          backgroundColor: "#fff",
+                          borderRadius: "8px",
+                          boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                        }}
+                      >
+                        <Typography variant="h6">{flashcard.front}</Typography>
+                      </Box>
+                      {/* Back Side */}
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          width: "100%",
+                          height: "100%",
+                          backfaceVisibility: "hidden",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          backgroundColor: "#f0f0f0",
+                          transform: "rotateY(180deg)",
+                          borderRadius: "8px",
+                          boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                        }}
+                      >
+                        <Typography variant="h6">{flashcard.back}</Typography>
+                      </Box>
+                    </Box>
                   </Box>
                 </CardContent>
               </CardActionArea>

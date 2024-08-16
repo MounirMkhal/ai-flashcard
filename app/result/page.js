@@ -8,8 +8,6 @@
     const [session, setSession] = useState(null);
     const [error, setError] = useState(null);
 
-    // ... (rest of the component)
-
     // Fetching Checkout Session
     useEffect(() => {
       const fetchCheckoutSession = async () => {
