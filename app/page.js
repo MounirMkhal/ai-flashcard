@@ -30,7 +30,7 @@ export default function Home() {
             content="Create flashcards from your texts"
           />
         </Head> */}
-      </Container> */}
+      {/* </Container> */}
 
       {/* Hero Section */}
       <Box sx={{ textAlign: "center", my: 4 }}>
