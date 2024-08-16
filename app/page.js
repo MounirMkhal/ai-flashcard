@@ -22,6 +22,16 @@ export default function Home() {
 
   return (
     <>
+      {/* <Container maxWidth="lg">
+        <Head>
+          <title>Flashcard App</title>
+          <meta
+            name="description"
+            content="Create flashcards from your texts"
+          />
+        </Head> */}
+      </Container> */}
+
       {/* Hero Section */}
       <Box sx={{ textAlign: "center", my: 4 }}>
         <Typography variant="h2" component="h1" gutterBottom>

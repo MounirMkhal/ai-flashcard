@@ -1,7 +1,32 @@
+<<<<<<< HEAD
 import { Container, Grid, Card, CardActionArea, CardContent, Box, Typography } from "@mui/material";
 import { useUser } from "@clerk/nextjs";
 import { collection, doc, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+=======
+"use client";
+
+import { useState, useEffect } from "react";
+import { db } from "@/firebase";
+import { useUser, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import {
+  Container,
+  Grid,
+  Card,
+  CardActionArea,
+  CardContent,
+  Typography,
+  Box,
+  AppBar,
+  Toolbar,
+  Button,  
+} from "@mui/material";
+import { doc, getDocs, collection } from "firebase/firestore";
+import { useSearchParams } from "next/navigation";
+import Link from "next/link";
+
+
+>>>>>>> 09bf754 (Created Navbar, Created and implemented Database, rendered flashcards)
 
 export default function Flashcard() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -35,6 +60,26 @@ export default function Flashcard() {
 
   return (
     <Container maxWidth="md">
+      <AppBar position="static">
+          <Toolbar sx ={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Box sx = {{ display: 'flex', gap: 2}}>
+            <Button color="inherit" component={Link} href="/">
+              FlashCard SaaS
+            </Button>
+            </Box>
+            <SignedOut>
+              <Button color="inherit" href="/sign-in">
+                Login
+              </Button>
+              <Button color="inherit" href="/sign-up">
+                Sign Up
+              </Button>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </Toolbar>
+        </AppBar>
       <Grid container spacing={3} sx={{ mt: 4 }}>
         {flashcards.map((flashcard) => (
           <Grid item xs={12} sm={6} md={4} key={flashcard.id}>
