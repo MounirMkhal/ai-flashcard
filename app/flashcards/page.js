@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import { useEffect, useState } from "react";
-import { useUser } from "@clerk/nextjs";
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "../firebase";
-import { useRouter } from "next/router";
-import { Container, Grid, Card, CardActionArea, CardContent, Typography } from "@mui/material";
-=======
 "use client";
 
 import { useEffect, useState } from "react";
@@ -22,7 +14,6 @@ import {
 } from "@mui/material";
 import { doc, getDoc, collection, setDoc } from "firebase/firestore";
 
->>>>>>> 09bf754 (Created Navbar, Created and implemented Database, rendered flashcards)
 
 export default function Flashcards() {
   const { isLoaded, isSignedIn, user } = useUser();
