@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-import { Container, Grid, Card, CardActionArea, CardContent, Box, Typography } from "@mui/material";
-import { useUser } from "@clerk/nextjs";
-import { collection, doc, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
-=======
 "use client";
 
 import { useState, useEffect } from "react";
@@ -26,7 +20,6 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 
->>>>>>> 09bf754 (Created Navbar, Created and implemented Database, rendered flashcards)
 
 export default function Flashcard() {
   const { isLoaded, isSignedIn, user } = useUser();

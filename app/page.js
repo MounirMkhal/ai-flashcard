@@ -1,5 +1,7 @@
-import { SignedIn } from "@clerk/nextjs";
-import { Typography, Button, Box, Grid } from "@mui/material";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { Container } from "@mui/material";
+import Head from "next/head";
+import { AppBar, Toolbar, Typography, Button, Box, Grid } from "@mui/material";
 
 export default function Home() {
   // Stripe Integration
@@ -40,16 +42,17 @@ export default function Home() {
         <Typography variant="h5" component="h2" gutterBottom>
           The easiest way to create flashcards from your text.
         </Typography>
-        <SignedIn>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ mt: 2, mr: 2 }}
-            href="/generate"
-          >
-            Get Started
-          </Button>
-        </SignedIn>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ mt: 2, mr: 2 }}
+          href="/generate"
+        >
+          Get Started
+        </Button>
+        <Button variant="outlined" color="primary" sx={{ mt: 2 }}>
+          Learn More
+        </Button>
       </Box>
 
       {/* Features */}
