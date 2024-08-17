@@ -18,7 +18,7 @@ export default function SignUpPage() {
             FlashCard SaaS
           </Typography>
           <Button color="inherit">
-            <Link href="/sing-in" passHref>
+            <Link href="/sign-in" passHref>
               Login
             </Link>
           </Button>

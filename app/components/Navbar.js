@@ -41,8 +41,7 @@ const Navbar = () => {
           Flashcard SaaS
         </LogoButton>
 
-        {/* Spacer to push buttons to the right side */}
-        <Box sx={{ flexGrow: 1 }} />
+       
 
         {/* SignedIn Section */}
         <SignedIn>
@@ -51,8 +50,11 @@ const Navbar = () => {
             <NavButton href="/flashcards">Flashcards</NavButton>
             <NavButton href="/generate">Generate</NavButton>
           </Box>
+
+          <Box flexGrow={1} />
           <UserButton sx={{ marginLeft: 2 }} /> {/* Adding some spacing */}
         </SignedIn>
+        
 
         {/* SignedOut Section */}
         <SignedOut>
