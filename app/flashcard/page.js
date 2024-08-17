@@ -11,18 +11,16 @@ import {
   CardContent,
   Typography,
   Box,
-  AppBar,
-  Toolbar,
   Button,
 } from "@mui/material";
 import { doc, getDocs, collection } from "firebase/firestore";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
 
 export default function Flashcard() {
   const { isLoaded, isSignedIn, user } = useUser();
   const [flashcards, setFlashcards] = useState([]);
-  const [flipped, setFlipped] = useState({});
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [flipped, setFlipped] = useState(false);
 
   const searchParams = useSearchParams();
   const search = searchParams.get("id");
@@ -42,20 +40,27 @@ export default function Flashcard() {
     getFlashcard();
   }, [search, user]);
 
-  const handleCardClick = (id) => {
-    setFlipped((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+  const handleCardClick = () => {
+    setFlipped((prev) => !prev);
+  };
+
+  const handleNext = () => {
+    setFlipped(false); // Reset flip state
+    setCurrentIndex((prev) => (prev < flashcards.length - 1 ? prev + 1 : prev));
+  };
+
+  const handlePrevious = () => {
+    setFlipped(false); // Reset flip state
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : prev));
   };
 
   return (
     <Container maxWidth="md">
-      <Grid container spacing={3} sx={{ mt: 4 }}>
-        {flashcards.map((flashcard, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
+      {flashcards.length > 0 && (
+        <Grid container spacing={3} sx={{ mt: 4, justifyContent: "center" }}>
+          <Grid item xs={12} sm={8} md={6}>
             <Card>
-              <CardActionArea onClick={() => handleCardClick(index)}>
+              <CardActionArea onClick={handleCardClick}>
                 <CardContent>
                   <Box
                     sx={{
@@ -72,7 +77,7 @@ export default function Flashcard() {
                         position: "relative",
                         width: "100%",
                         height: "100%",
-                        transform: flipped[index]
+                        transform: flipped
                           ? "rotateY(180deg)"
                           : "rotateY(0deg)",
                       }}
@@ -92,7 +97,9 @@ export default function Flashcard() {
                           boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
                         }}
                       >
-                        <Typography variant="h6">{flashcard.front}</Typography>
+                        <Typography variant="h6">
+                          {flashcards[currentIndex].front}
+                        </Typography>
                       </Box>
                       {/* Back Side */}
                       <Box
@@ -110,7 +117,9 @@ export default function Flashcard() {
                           boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
                         }}
                       >
-                        <Typography variant="h6">{flashcard.back}</Typography>
+                        <Typography variant="h6">
+                          {flashcards[currentIndex].back}
+                        </Typography>
                       </Box>
                     </Box>
                   </Box>
@@ -118,8 +127,26 @@ export default function Flashcard() {
               </CardActionArea>
             </Card>
           </Grid>
-        ))}
-      </Grid>
+
+          {/* Navigation Buttons */}
+          <Grid item xs={12} sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Button
+              variant="contained"
+              onClick={handlePrevious}
+              disabled={currentIndex === 0}
+            >
+              Previous
+            </Button>
+            <Button
+              variant="contained"
+              onClick={handleNext}
+              disabled={currentIndex === flashcards.length - 1}
+            >
+              Next
+            </Button>
+          </Grid>
+        </Grid>
+      )}
     </Container>
   );
 }
