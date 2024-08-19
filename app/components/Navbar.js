@@ -37,25 +37,32 @@ const Navbar = () => {
     <AppBar position="static" sx={{ backgroundColor: "#3f51b5" }}>
       <Toolbar>
         {/* Logo Section */}
-        <LogoButton onClick={handleLogoClick}>
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{ cursor: 'pointer', color: 'white' }}
+          onClick={handleLogoClick}
+          flexGrow={1}
+        >
           Flashcard SaaS
-        </LogoButton>
-
-       
+        </Typography>
 
         {/* SignedIn Section */}
         <SignedIn>
-          {/* Group buttons and user icon */}
-          <Box flexGrow={1} />
-          <UserButton sx={{ marginLeft: 2 }} /> {/* Adding some spacing */}
+          <Box display="flex" alignItems="center">
+            <UserButton sx={{ marginLeft: 2 }} /> {/* Adding some spacing */}
+          </Box>
         </SignedIn>
-        
 
         {/* SignedOut Section */}
         <SignedOut>
-          <Box display ="flex" alignItems="center">
-          <NavButton href="/sign-in">Login</NavButton>
-          <NavButton href="/sign-up">Sign Up</NavButton>
+          <Box display="flex" alignItems="center">
+            <Button href="/sign-in" color="inherit" sx={{ marginLeft: 2 }}>
+              Login
+            </Button>
+            <Button href="/sign-up" color="inherit" sx={{ marginLeft: 2 }}>
+              Sign Up
+            </Button>
           </Box>
         </SignedOut>
       </Toolbar>
