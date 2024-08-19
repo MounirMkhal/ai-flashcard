@@ -59,7 +59,7 @@ export default function Home() {
           variant="contained"
           color="primary"
           sx={{ mt: 2, mr: 2 }}
-          href="/generate"
+          href="/get-started"
         >
           Get Started
         </Button>
