@@ -1,16 +1,29 @@
+'use client'
+
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Container } from "@mui/material";
 import Head from "next/head";
 import { AppBar, Toolbar, Typography, Button, Box, Grid } from "@mui/material";
+import { basicPrice, proPrice } from '@/app/data';
+import getStripe from '@/utils/get-stripe'
 
 export default function Home() {
   // Stripe Integration
-  const handleSubmit = async () => {
-    const checkoutSession = await fetch("/api/checkout_sessions", {
+  const handleSubmit = async (e, price) => {
+    e.preventDefault()
+    const checkoutSession = await fetch("/api/checkout_session", {
       method: "POST",
-      headers: { origin: "http://localhost:3000" },
+      headers: {
+        origin: "http://localhost:3000" // change URL when hosted
+      },
+      body: JSON.stringify({ price }),
     });
     const checkoutSessionJson = await checkoutSession.json();
+
+    if (checkoutSessionJson.statusCode === 500) {
+      console.error(checkoutSessionJson.message)
+      return
+    }
 
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout({
@@ -132,12 +145,12 @@ export default function Home() {
               }}
             >
               <Typography variant="h6" gutterBottom>Basic</Typography>
-              <Typography variant="h5" gutterBottom>$5 / month</Typography>
+              <Typography variant="h5" gutterBottom>{`$${basicPrice} / month`}</Typography>
               <Typography>
                 {" "}
                 Access to basic flashcard features and limited storage.
               </Typography>
-              <Button variant="contained" color="primary" sx={{mt: 2}}>
+              <Button variant="contained" color="primary" sx={{mt: 2}} onClick={(e) => handleSubmit(e, basicPrice)}>
                 Choose Basic
               </Button>
             </Box>
@@ -152,13 +165,13 @@ export default function Home() {
                 borderRadius: 2,
               }}
             >
-              <Typography variant="h6" gutterBottom>Basic</Typography>
-              <Typography variant="h5" gutterBottom>$10 / month</Typography>
+              <Typography variant="h6" gutterBottom>Pro</Typography>
+              <Typography variant="h5" gutterBottom>{`$${proPrice} / month`}</Typography>
               <Typography>
                 {" "}
                 Augmented flashcards and storage, with priority support.
               </Typography>
-              <Button variant="contained" color="primary" sx={{mt: 2}}>
+              <Button variant="contained" color="primary" sx={{mt: 2}} onClick={(e) => handleSubmit(e, proPrice)}>
                 Choose Pro
               </Button>
             </Box>

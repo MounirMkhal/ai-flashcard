@@ -1,17 +1,17 @@
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
+import { proPrice } from '@/app/data';
 
-const formatAmountForStripe = (amount, currency) => {
+
+const formatAmountForStripe = (amount) => {
   return Math.round(amount * 100)
 }
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2022-11-15',
-})
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 export async function POST(req) {
   try {
-    // We'll implement the checkout session creation here
+    const { price } = await req.json()
     const params = {
       mode: 'subscription',
       payment_method_types: ['card'],
@@ -20,9 +20,9 @@ export async function POST(req) {
           price_data: {
             currency: 'usd',
             product_data: {
-              name: 'Pro subscription',
+              name: `${price == proPrice ? 'Pro' : 'Basic'} Subscription`,
             },
-            unit_amount: formatAmountForStripe(10, 'usd'), // $10.00
+            unit_amount: formatAmountForStripe(price),
             recurring: {
               interval: 'month',
               interval_count: 1,
@@ -52,7 +52,7 @@ export async function POST(req) {
   }
 }
 
-export async function GET(req) {
+export async function GET(req, {params}) {
   const searchParams = req.nextUrl.searchParams
   const session_id = searchParams.get('session_id')
 
