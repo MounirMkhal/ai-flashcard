@@ -46,11 +46,6 @@ const Navbar = () => {
         {/* SignedIn Section */}
         <SignedIn>
           {/* Group buttons and user icon */}
-          <Box display="flex" alignItems="center">
-            <NavButton href="/flashcards">Flashcards</NavButton>
-            <NavButton href="/generate">Generate</NavButton>
-          </Box>
-
           <Box flexGrow={1} />
           <UserButton sx={{ marginLeft: 2 }} /> {/* Adding some spacing */}
         </SignedIn>
@@ -58,8 +53,10 @@ const Navbar = () => {
 
         {/* SignedOut Section */}
         <SignedOut>
+          <Box display ="flex" alignItems="center">
           <NavButton href="/sign-in">Login</NavButton>
           <NavButton href="/sign-up">Sign Up</NavButton>
+          </Box>
         </SignedOut>
       </Toolbar>
     </AppBar>
