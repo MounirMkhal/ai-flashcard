@@ -15,7 +15,7 @@ import {
 import { doc, getDoc, collection, setDoc } from "firebase/firestore";
 
 
-export default function flashcards() {
+export default function Flashcards() {
   const { isLoaded, isSignedIn, user } = useUser();
   const [flashcards, setFlashcards] = useState([]);
   const router = useRouter();
@@ -38,6 +38,10 @@ export default function flashcards() {
     getFlashcards();
   }, [user]);
 
+  function handleCardClick(id) {
+    router.push(`/flashcard?id=${id}`);
+  }
+
   return (
 
     <Container maxWidth="md">
@@ -59,7 +63,4 @@ export default function flashcards() {
   </Container>
   )
 
-  function handleCardClick(id) {
-    router.push(`/flashcard?id=${id}`);
-  }
 }
