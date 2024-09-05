@@ -1,3 +1,9 @@
+# AI Flashcard Generator Saas
+This application allows users to write to a chatbot to generate flashcards to study!
+
+Website Link: https://ai-flashcard-sr3t.vercel.app/
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
