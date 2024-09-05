@@ -14,7 +14,7 @@ export default function Home() {
     const checkoutSession = await fetch("/api/checkout_session", {
       method: "POST",
       headers: {
-        origin: "http://localhost:3000" // change URL when hosted
+        origin: "https://ai-flashcard-sr3t.vercel.app/" // change URL when hosted
       },
       body: JSON.stringify({ price }),
     });
